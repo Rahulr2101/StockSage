@@ -234,10 +234,12 @@ def initialize_llama(model_path):
     
     try:
         model = Llama(
-            model_path=model_path,
-            n_ctx=4096,
-            n_threads=4,
-            n_gpu_layers=-1  # Use all layers on GPU
+           n_ctx=2048, 
+            n_threads=os.cpu_count(), 
+            n_batch=512,  
+            use_mlock=True, 
+            vocab_only=False,
+            seed=-1,
         )
         logger.info("Llama model initialized successfully with GPU support")
         return model
@@ -366,7 +368,7 @@ def chat_response(user_message, model_path=MODEL_FILENAME):
     try:
         output = llama_model(
             prompt=enriched_prompt,
-            max_tokens=800,
+            max_tokens=400,
             temperature=0.7,
             top_p=0.95,
         )
