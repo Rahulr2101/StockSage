@@ -234,6 +234,7 @@ def initialize_llama(model_path):
     
     try:
         model = Llama(
+            model_path=model_path,
            n_ctx=2048, 
             n_threads=os.cpu_count(), 
             n_batch=512,  
@@ -250,7 +251,7 @@ def initialize_llama(model_path):
             model = Llama(
                 model_path=model_path,
                 n_ctx=4096,
-                n_threads=4
+                n_threads=os.cpu_count()
             )
             logger.info("Llama model initialized successfully on CPU")
             return model
