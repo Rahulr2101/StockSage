@@ -235,10 +235,10 @@ def initialize_llama(model_path):
     try:
         model = Llama(
             model_path=model_path,
-           n_ctx=2048, 
-            n_threads=os.cpu_count(), 
-            n_batch=512,  
-            use_mlock=True, 
+            n_ctx=1024,  # Reduce context window if you don't need 2048
+            n_threads=os.cpu_count(),  # This is good, but test with specific values
+            n_batch=128,  # Reduce batch size for CPU
+            use_mmap=True,  # Try this instead of use_mlock for some systems
             vocab_only=False,
             seed=-1,
         )
