@@ -85,6 +85,3 @@ The server will start on http://0.0.0.0:8080
 
 The application logs are stored in `finance_api.log`
 
-## License
-
-[MIT](LICENSE)
